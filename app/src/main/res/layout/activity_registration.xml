@@ -70,6 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
+        app:errorTextAppearance="@style/TextAppearance.CustomError"
         app:layout_constraintVertical_bias="0.22000003">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -95,6 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserNameLayout"
+        app:errorTextAppearance="@style/TextAppearance.CustomError"
         app:layout_constraintVertical_bias="0.060000002">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -123,6 +125,7 @@
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/EmailLayout"
         app:layout_constraintVertical_bias="0.060000002"
+        app:errorTextAppearance="@style/TextAppearance.CustomError"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText

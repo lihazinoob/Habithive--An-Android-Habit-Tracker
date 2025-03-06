@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.CustomError" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:fontFamily">@font/roboto_mono_bold</item> <!-- Replace with your font -->
+        <item name="android:textSize">14sp</item> <!-- Optional: Adjust size -->
+        <item name="android:textColor">#FF0000</item> <!-- Optional: Keep red for error -->
+    </style>
+</resources>
