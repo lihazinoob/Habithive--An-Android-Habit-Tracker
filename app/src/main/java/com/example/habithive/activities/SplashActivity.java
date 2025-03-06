@@ -64,7 +64,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 //                Log.d("SplashActivity", "Redirecting after 4000ms");
-                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                Intent intent = new Intent(SplashActivity.this,RegistrationActivity.class);
                 startActivity(intent);
 //                Close SplashActivity so it doesnt stay in the back stack
                 finish();

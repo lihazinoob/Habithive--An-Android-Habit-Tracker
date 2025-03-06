@@ -19,6 +19,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.habithive.activities.LoginActivity;
+import com.example.habithive.activities.RegistrationActivity;
 import com.example.habithive.activities.SplashActivity;
 
 import org.junit.After;
@@ -48,7 +49,7 @@ public class SplashActivityTest {
     public void testSplashScreenTime()
     {
 //        Mock the Intent to LoginActivity
-        intending(hasComponent(LoginActivity.class.getName())).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK,null));
+        intending(hasComponent(RegistrationActivity.class.getName())).respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK,null));
         try {
             Thread.sleep(4500); //Freezes the test thread
 
@@ -56,7 +57,7 @@ public class SplashActivityTest {
             e.printStackTrace();
         }
 //        verify the Intent was sent to LoginActivity
-        intended(hasComponent(LoginActivity.class.getName()));
+        intended(hasComponent(RegistrationActivity.class.getName()));
     }
 
 }
