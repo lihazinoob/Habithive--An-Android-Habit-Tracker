@@ -34,24 +34,24 @@ public class OnBoardingActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-//        Log.d(TAG, "onCreate called");
+        Log.d(TAG, "onCreate called");
 
         viewPager = findViewById(R.id.viewpager);
-//        Log.d(TAG, "ViewPager initialized: " + (viewPager != null));
+        Log.d(TAG, "ViewPager initialized: " + (viewPager != null));
 
         // Adapter design pattern is implemented here
         OnBoardingAdapter adapter = new OnBoardingAdapter(this);
         viewPager.setAdapter(adapter);
-//        Log.d(TAG, "Adapter set, item count: " + adapter.getItemCount());
+        Log.d(TAG, "Adapter set, item count: " + adapter.getItemCount());
 
         handler = new Handler(Looper.getMainLooper());
         autoAdvanceRunnable = new Runnable() {
             @Override
             public void run() {
-//                Log.d(TAG, "Inside the run function");
+                Log.d(TAG, "Inside the run function");
                 int currentItem = viewPager.getCurrentItem();
                 int maxItem = adapter.getItemCount();
-//                Log.d(TAG, "Runnable running - Current: " + currentItem + ", Max: " + maxItem + ", AutoAdvancing: " + isAutoAdvancing);
+                Log.d(TAG, "Runnable running - Current: " + currentItem + ", Max: " + maxItem + ", AutoAdvancing: " + isAutoAdvancing);
 
                 if (currentItem < (maxItem - 1) && isAutoAdvancing) {
                     viewPager.setCurrentItem(currentItem + 1, true);
@@ -75,11 +75,11 @@ public class OnBoardingActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 if (isFirstPageSelection) {
                     isFirstPageSelection = false; // Ignore initial selection
-//                    Log.d(TAG, "Initial page selection: " + position + ", ignoring");
+                    Log.d(TAG, "Initial page selection: " + position + ", ignoring");
                 } else {
                     isAutoAdvancing = false;
                     handler.removeCallbacks(autoAdvanceRunnable);
-//                    Log.d(TAG, "User swiped to position: " + position + ", auto-advance stopped");
+                    Log.d(TAG, "User swiped to position: " + position + ", auto-advance stopped");
                 }
             }
         });
@@ -89,6 +89,6 @@ public class OnBoardingActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(autoAdvanceRunnable);
-//        Log.d(TAG, "onDestroy called");
+        Log.d(TAG, "onDestroy called");
     }
 }
