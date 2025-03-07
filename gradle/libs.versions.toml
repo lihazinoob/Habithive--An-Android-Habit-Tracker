@@ -10,6 +10,8 @@ test-runner = "1.5.2"
 test-core = "1.5.0"
 espresso-intents = "3.5.1"
 google-services = "4.4.2"
+activity = "1.8.0"
+constraintlayout = "2.1.4"
 
 
 [libraries]
@@ -25,6 +27,8 @@ espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents"
 firebase-analytics = "com.google.firebase:firebase-analytics:22.0.0"
 firebase-auth = "com.google.firebase:firebase-auth:23.0.0"
 play-services-auth = "com.google.android.gms:play-services-auth:20.7.0"
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 
 [plugins]

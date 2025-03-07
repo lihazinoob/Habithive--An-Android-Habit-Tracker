@@ -3,6 +3,7 @@ package com.example.habithive.activities;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import com.example.habithive.R;
 
 public class SplashActivity extends AppCompatActivity {
+    private static final int SPLASH_DELAY = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,33 +27,16 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //    Linking the Activity to an design file
         setContentView(R.layout.activity_splash);
-        TextView animatedText1 = findViewById(R.id.textView);
-        TextView animatedText2 = findViewById(R.id.textView2);
-        TextView ColorAnimatedText = findViewById(R.id.textView3);
-        /*Fade In automation*/
-        Animation fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
-//        animationIdling.increment();
-        animatedText1.startAnimation(fadeIn);
-        animatedText2.startAnimation(fadeIn);
-
-//        Animating color of the logo
-        int startColor = ContextCompat.getColor(this,R.color.logoColor);
-        int endColor = ContextCompat.getColor(this,R.color.black);
-
-        ValueAnimator colorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(),startColor,endColor);
-        colorAnimator.setDuration(2500);
-        colorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
+        new Handler(Looper.getMainLooper()).postDelayed(()->
         {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animator)
-            {
-                ColorAnimatedText.setTextColor((int) animator.getAnimatedValue());
-            }
+            SharedPreferences prefs = getSharedPreferences("PREFS",MODE_PRIVATE);
+            boolean isFirstRun = prefs.getBoolean("isFirstRun",true);
 
-        });
+            Intent intent = isFirstRun ? new Intent(SplashActivity.this, OnBoardingActivity.class):new Intent(SplashActivity.this,RegistrationActivity.class);
+            startActivity(intent);
+            finish();
 
-        colorAnimator.start();
-
+        },SPLASH_DELAY);
 
 
 
@@ -59,17 +44,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-//        Set the delay for 3 seconds, then redirecting
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-//                Log.d("SplashActivity", "Redirecting after 4000ms");
-                Intent intent = new Intent(SplashActivity.this,RegistrationActivity.class);
-                startActivity(intent);
-//                Close SplashActivity so it doesnt stay in the back stack
-                finish();
-            }
-        },4000);
 
     }
 }
