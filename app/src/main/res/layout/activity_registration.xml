@@ -4,149 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1D1D1D">
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="675dp"
-        android:background="@drawable/cornered_rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_mono_bold"
-        android:text="Sign Up"
-        android:textColor="#DDDDDD"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="46dp"
-        android:layout_height="32dp"
-        android:tint="#DDDDDD"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.465"
-        app:srcCompat="@drawable/wheelchair_move_solid" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="21dp"
-        android:layout_height="19dp"
-        android:tint="#DDDDDD"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.927"
-        app:srcCompat="@drawable/arrow_left_solid" />
+    android:background="@drawable/splash_background">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/UserNameLayout"
-        android:layout_width="0dp"
+        android:id="@+id/UserNameTextField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:hint="UserName"
         app:cursorColor="@color/black"
         app:errorEnabled="true"
-        app:hintTextColor="@color/hint_color"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:hintTextColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:errorTextAppearance="@style/TextAppearance.CustomError"
-        app:layout_constraintVertical_bias="0.22000003">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41000003">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/UserNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
 
-            android:visibility="visible" />
+            android:fontFamily="@font/roboto_mono_medium"
+            android:inputType="text" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/EmailLayout"
-        android:layout_width="0dp"
+        android:id="@+id/EmailTextField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        app:errorEnabled="true"
-        app:cursorColor="@color/black"
-        app:hintTextColor="@color/hint_color"
         android:hint="Email"
+        app:cursorColor="@color/black"
+        app:errorEnabled="true"
+        app:hintTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserNameLayout"
-        app:errorTextAppearance="@style/TextAppearance.CustomError"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameTextField"
         app:layout_constraintVertical_bias="0.060000002">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EmailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono_medium"
+            android:inputType="textEmailAddress" />
 
-            android:inputType="textEmailAddress"
-
-            android:visibility="visible" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PasswordLayout"
-        android:layout_width="0dp"
+        android:id="@+id/PasswordTextField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:hint="Password"
-        app:boxBackgroundMode="filled"
         app:cursorColor="@color/black"
         app:errorEnabled="true"
-        app:hintTextColor="@color/hint_color"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:hintTextColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/EmailLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailTextField"
         app:layout_constraintVertical_bias="0.060000002"
-        app:errorTextAppearance="@style/TextAppearance.CustomError"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/PasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono_medium"
             android:inputType="textPassword" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ConfirmTextField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/textColorSecondary"
-        android:text="Register"
-        android:textColor="@color/black"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Confirm Password"
+        app:cursorColor="@color/black"
+        app:errorEnabled="true"
+        app:hintTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordLayout"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintTop_toBottomOf="@+id/PasswordTextField"
+        app:layout_constraintVertical_bias="0.060000002"
+        app:passwordToggleEnabled="true">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ConfirmEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono_medium"
+            android:inputType="textPassword"/>
 
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

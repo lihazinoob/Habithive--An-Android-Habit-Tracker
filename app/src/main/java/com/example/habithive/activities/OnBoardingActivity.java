@@ -19,7 +19,7 @@ public class OnBoardingActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private Handler handler;
     private Runnable autoAdvanceRunnable;
-    private static final int PAGE_DELAY = 3000; // 3 seconds
+    private static final int PAGE_DELAY = 5000; // 5 seconds
     private boolean isAutoAdvancing = true;
     private boolean isFirstPageSelection = true; // New flag
     private static final String TAG = "OnBoardingDebug";
