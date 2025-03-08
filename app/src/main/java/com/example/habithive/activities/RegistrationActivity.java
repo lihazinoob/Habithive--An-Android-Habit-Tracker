@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private ImageView addImage;
     private ImageView imagePlaceHolder;
     private ImageView registerButton;
+    private ProgressBar registrationLoader;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -68,6 +70,7 @@ public class RegistrationActivity extends AppCompatActivity {
           addImage = findViewById(R.id.AddImage);
           imagePlaceHolder = findViewById(R.id.ImagePlaceHolder);
           registerButton = findViewById(R.id.RegisterButton);
+          registrationLoader = findViewById(R.id.progressBar);
 
 //            Handling the click on the "+" sign
         addImage.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +155,9 @@ public class RegistrationActivity extends AppCompatActivity {
             return;
         }
 
+        registrationLoader.setVisibility(View.VISIBLE);
+        registerButton.setEnabled(false);
+
 //        Authenticate with Firebase
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this,task -> {
            if(task.isSuccessful())
@@ -163,6 +169,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 {
                     //               upload image to the firebase storage
                     StorageReference imageRef = storageRef.child("profile_images/" + userId + ".jpg");
+
                     imageRef.putFile(selectedImageUri).addOnSuccessListener(taskSnapshot -> {
                         imageRef.getDownloadUrl().addOnSuccessListener(uri->
                         {
@@ -170,11 +177,14 @@ public class RegistrationActivity extends AppCompatActivity {
                             saveUserData(userId,userName,email,imageUrl);
                         }) ;
                     }).addOnFailureListener(event -> {
+                        registrationLoader.setVisibility(View.GONE);
+                        registerButton.setEnabled(true);
                         Toast.makeText(this,"Image Upload Failed: "+event.getMessage(),Toast.LENGTH_SHORT).show();
                     });
                 }
                 else
                 {
+
                     saveUserData(userId,userName,email,null);
                 }
 
@@ -182,6 +192,8 @@ public class RegistrationActivity extends AppCompatActivity {
            }
            else
            {
+               registrationLoader.setVisibility(View.GONE);
+               registerButton.setEnabled(true);
                Toast.makeText(this,"Registration Failed: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
            }
         });
@@ -202,9 +214,13 @@ public class RegistrationActivity extends AppCompatActivity {
 //        Save to Firesotre under 'users' collection
         db.collection("users").document(userId).set(userData).addOnSuccessListener(s->
         {
+            registrationLoader.setVisibility(View.GONE);
+            registerButton.setEnabled(true);
             Toast.makeText(this,"Saved data to firestore",Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(f->
         {
+            registrationLoader.setVisibility(View.GONE);
+            registerButton.setEnabled(true);
            Toast.makeText(this,"User data is not saved to firestore",Toast.LENGTH_SHORT).show();
         });
     }
