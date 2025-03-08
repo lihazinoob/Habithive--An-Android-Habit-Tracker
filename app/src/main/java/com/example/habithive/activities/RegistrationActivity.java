@@ -17,10 +17,20 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
+    private FirebaseFirestore db;
+    private StorageReference storageRef;
+    private Uri selectedImageUri;
+
     private TextInputEditText usernameEditText;
     private TextInputEditText emailEditText;
     private TextInputEditText passwordEditText;
@@ -38,8 +48,12 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-//        Initialize Firebase Auth
+//        Initialize Firebase Auth,db and storage
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        storageRef = FirebaseStorage.getInstance().getReference();
+
+
 
 
 //       Binding with UI component
@@ -88,8 +102,8 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == 1 && resultCode == RESULT_OK && data!=null)
         {
-            Uri imageUri = data.getData();
-            imagePlaceHolder.setImageURI(imageUri);
+            selectedImageUri = data.getData();
+            imagePlaceHolder.setImageURI(selectedImageUri);
         }
 
     }
@@ -124,6 +138,7 @@ public class RegistrationActivity extends AppCompatActivity {
             confirmpasswordLayout.setError("Required");
             hasErrors = true;
         }
+
         if (hasErrors) {
             return;
         }
@@ -137,7 +152,61 @@ public class RegistrationActivity extends AppCompatActivity {
             return;
         }
 
+//        Authenticate with Firebase
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this,task -> {
+           if(task.isSuccessful())
+           {
+               FirebaseUser user = auth.getCurrentUser();
+               String userId = user.getUid(); // generating unique user id for storage purpose
+//               Saving Image to Storage
+                if(selectedImageUri != null )
+                {
+                    //               upload image to the firebase storage
+                    StorageReference imageRef = storageRef.child("profile_images/" + userId + ".jpg");
+                    imageRef.putFile(selectedImageUri).addOnSuccessListener(taskSnapshot -> {
+                        imageRef.getDownloadUrl().addOnSuccessListener(uri->
+                        {
+                            String imageUrl = uri.toString();
+                            saveUserData(userId,userName,email,imageUrl);
+                        }) ;
+                    }).addOnFailureListener(event -> {
+                        Toast.makeText(this,"Image Upload Failed: "+event.getMessage(),Toast.LENGTH_SHORT).show();
+                    });
+                }
+                else
+                {
+                    saveUserData(userId,userName,email,null);
+                }
 
+
+           }
+           else
+           {
+               Toast.makeText(this,"Registration Failed: " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+           }
+        });
+    }
+
+    private void saveUserData(String userId,String userName,String email,String imageUrl)
+    {
+//        Create a user data map in the backend
+        Map<String,Object> userData = new HashMap<>();
+        userData.put("username",userName);
+        userData.put("email",email);
+        if(imageUrl != null)
+        {
+            userData.put("imageUrl",imageUrl);
+        }
+
+
+//        Save to Firesotre under 'users' collection
+        db.collection("users").document(userId).set(userData).addOnSuccessListener(s->
+        {
+            Toast.makeText(this,"Saved data to firestore",Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(f->
+        {
+           Toast.makeText(this,"User data is not saved to firestore",Toast.LENGTH_SHORT).show();
+        });
     }
 
 }

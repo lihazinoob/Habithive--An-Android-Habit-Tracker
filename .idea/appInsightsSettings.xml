@@ -10,9 +10,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.habithive" />
-                  <option name="mobileSdkAppId" value="1:196859743774:android:8ab8a9accd6a366644280f" />
-                  <option name="projectId" value="habithive-a4364" />
-                  <option name="projectNumber" value="196859743774" />
+                  <option name="mobileSdkAppId" value="1:884743678422:android:9899cd1edfcb585ed15c77" />
+                  <option name="projectId" value="instagram-clone-a2bbb" />
+                  <option name="projectNumber" value="884743678422" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -34,6 +34,8 @@ dependencies {
     implementation libs.firebase.analytics
     implementation libs.firebase.auth
     implementation libs.play.services.auth
+    implementation 'com.google.firebase:firebase-firestore:25.1.2'     // Firestore
+    implementation 'com.google.firebase:firebase-storage:21.0.0'       // Storage
     implementation libs.material.v1120
     implementation libs.appcompat
     implementation libs.material
