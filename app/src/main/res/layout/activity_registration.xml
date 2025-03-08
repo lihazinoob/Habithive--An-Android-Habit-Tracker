@@ -15,7 +15,7 @@
         android:text="Already have an Account?"
         android:textColor="@color/textColorPrimary"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/RegisterButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,15 +130,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="352dp"
-        android:layout_height="89dp"
+        android:id="@+id/RegisterButton"
+        android:layout_width="329dp"
+        android:layout_height="69dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"
-        app:layout_constraintVertical_bias="0.298"
+        app:layout_constraintVertical_bias="0.222"
         app:srcCompat="@drawable/e_mail" />
 
     <ImageView
@@ -149,8 +148,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterButton"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/google" />
 
     <ImageView
@@ -186,7 +185,7 @@
         android:text="LOG IN"
         android:textColor="@color/textColorPrimary"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/RegisterButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toEndOf="@+id/LoginMessage"
