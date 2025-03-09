@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private ImageView imagePlaceHolder;
     private ImageView registerButton;
     private ProgressBar registrationLoader;
+    private TextView loginbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -71,6 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
           imagePlaceHolder = findViewById(R.id.ImagePlaceHolder);
           registerButton = findViewById(R.id.RegisterButton);
           registrationLoader = findViewById(R.id.progressBar);
+          loginbutton = findViewById(R.id.LoginButton);
 
 //            Handling the click on the "+" sign
         addImage.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +89,9 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 registerUser();
             }
+        });
+        loginbutton.setOnClickListener(view->{
+            startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
         });
 
     }
