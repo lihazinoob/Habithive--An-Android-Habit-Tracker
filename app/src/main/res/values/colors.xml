@@ -13,4 +13,39 @@
     <color name="textColorSecondary">#757575</color>
     <color name="logoColor">#444444</color>
 
+
+
+
+
+<!--    Here is a new Color Scheme-->
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+
+    <!-- Background Colors -->
+    <color name="background">#F5F5F5</color>
+    <color name="secondaryBackground">#FFFFFF</color>
+
+    <!-- Button Colors -->
+    <color name="primaryButton">#4A90E2</color>
+    <color name="secondaryButton">#E0E0E0</color>
+
+    <!-- Accent Colors -->
+    <color name="accent">#FFA726</color>
+
+    <!-- Status Colors -->
+    <color name="success">#66BB6A</color>
+    <color name="warning">#FFD54F</color>
+    <color name="error">#EF5350</color>
+
+    <!-- Progress Bar Colors -->
+    <color name="progressFill">#4A90E2</color>
+    <color name="progressBackground">#E0E0E0</color>
+
+    <!-- Icon Colors -->
+    <color name="primaryIcon">#212121</color>
+    <color name="secondaryIcon">#757575</color>
+
+    <!-- Border Colors -->
+    <color name="border">#E0E0E0</color>
+
 </resources>

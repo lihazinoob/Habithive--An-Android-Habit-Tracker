@@ -21,6 +21,7 @@
             android:name=".activities.OnBoardingActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
