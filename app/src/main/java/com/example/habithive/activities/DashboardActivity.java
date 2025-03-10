@@ -1,5 +1,6 @@
 package com.example.habithive.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -14,16 +15,18 @@ import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.example.habithive.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DashboardActivity extends AppCompatActivity  {
-    private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
-    private FloatingActionButton fab;
+    private FloatingActionButton fabCreate;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,37 +34,47 @@ public class DashboardActivity extends AppCompatActivity  {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dashboard);
         // Initialize views
-        drawerLayout = findViewById(R.id.navigation_view);
+        auth = FirebaseAuth.getInstance();
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        fab = findViewById(R.id.fab);
-        // Handle Bottom Navigation item clicks
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+        fabCreate = findViewById(R.id.fab_create);
+
+        // Set default fragment
+        if (savedInstanceState == null) {
+            loadFragment(new HomeFragment());
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        }
+        // Bottom Navigation listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
-                // Handle Home click
-                Toast.makeText(this, "Home Selected", Toast.LENGTH_SHORT).show();
+                loadFragment(new HomeFragment());
+                return true;
+            }
+            else if (id == R.id.nav_progress) {
+                loadFragment(new ProgressFrament());
                 return true;
             } else if (id == R.id.nav_logout) {
-                // Handle Logout click
-                Toast.makeText(this, "Logout Selected", Toast.LENGTH_SHORT).show();
+                auth.signOut();
+                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 return true;
             }
             return false;
         });
-
-        // Handle FAB click
-        fab.setOnClickListener(view -> {
-            // Handle FAB click (e.g., open a habit creation dialog)
-            Toast.makeText(this, "Create Habit", Toast.LENGTH_SHORT).show();
+        fabCreate.setOnClickListener(v -> {
+            Toast.makeText(this, "Create Habit clicked", Toast.LENGTH_SHORT).show();
         });
 
 
     }
-
-
-
-
-
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+    }
 
 
 }
