@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.habithive.R;
+import com.example.habithive.activities.database.AppDatabase;
+import com.example.habithive.activities.model.User;
+import com.example.habithive.activities.model.UserManagerSingleton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private StorageReference storageRef;
+    private AppDatabase appDatabase;
     private Uri selectedImageUri;
 
     private TextInputEditText usernameEditText;
@@ -220,9 +224,24 @@ public class RegistrationActivity extends AppCompatActivity {
 //        Save to Firesotre under 'users' collection
         db.collection("users").document(userId).set(userData).addOnSuccessListener(s->
         {
-            registrationLoader.setVisibility(View.GONE);
-            registerButton.setEnabled(true);
-            Toast.makeText(this,"Saved data to firestore",Toast.LENGTH_SHORT).show();
+//            Create a User Object
+            User user = new User(userId,userName,email,imageUrl);
+//            Save to Room and Update Singleton
+            new Thread(()->
+            {
+               appDatabase.userDao().insert(user);
+                UserManagerSingleton.getInstance().setCurrentUser(user);
+                runOnUiThread(()->
+                {
+                    registrationLoader.setVisibility(View.GONE);
+                    registerButton.setEnabled(true);
+                    Toast.makeText(this,"Saved data to firestore",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegistrationActivity.this,DashboardActivity.class));
+                    finish();
+                });
+            });
+
+
         }).addOnFailureListener(f->
         {
             registrationLoader.setVisibility(View.GONE);

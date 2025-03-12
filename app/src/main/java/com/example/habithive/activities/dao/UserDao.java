@@ -7,11 +7,11 @@ import androidx.room.Query;
 import com.example.habithive.activities.model.User;
 
 @Dao
-public class UserDao {
+public interface UserDao {
     @Insert
     void insert(User user);
 
     @Query("SELECT * FROM users WHERE userId = :userID")
-    User getUserById(String userId);
+    User getUserById(String userID);
 
 }
