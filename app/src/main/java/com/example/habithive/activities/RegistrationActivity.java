@@ -60,6 +60,7 @@ public class RegistrationActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         storageRef = FirebaseStorage.getInstance().getReference();
+        appDatabase = AppDatabase.getInstance(this);
 
 
 
@@ -229,17 +230,29 @@ public class RegistrationActivity extends AppCompatActivity {
 //            Save to Room and Update Singleton
             new Thread(()->
             {
-               appDatabase.userDao().insert(user);
-                UserManagerSingleton.getInstance().setCurrentUser(user);
-                runOnUiThread(()->
+                try {
+                    appDatabase.userDao().insert(user);
+                    UserManagerSingleton.getInstance().setCurrentUser(user);
+                    runOnUiThread(()->
+                    {
+                        registrationLoader.setVisibility(View.GONE);
+                        registerButton.setEnabled(true);
+                        Toast.makeText(this,"Saved data to firestore",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegistrationActivity.this,DashboardActivity.class));
+                        finish();
+                    });
+                }
+                catch (Exception e)
                 {
-                    registrationLoader.setVisibility(View.GONE);
-                    registerButton.setEnabled(true);
-                    Toast.makeText(this,"Saved data to firestore",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegistrationActivity.this,DashboardActivity.class));
-                    finish();
-                });
-            });
+                    runOnUiThread(()->
+                    {
+                        registrationLoader.setVisibility(View.GONE);
+                        registerButton.setEnabled(true);
+                        Toast.makeText(this, "Failed to insert data into Room DB: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    });
+                }
+
+            }).start();
 
 
         }).addOnFailureListener(f->

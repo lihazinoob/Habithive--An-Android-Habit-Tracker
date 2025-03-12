@@ -66,7 +66,7 @@ public class OnBoardingFragment2 extends Fragment {
         view.findViewById(R.id.btn_get_started).setOnClickListener(v ->
         {
             getActivity().getSharedPreferences("PREFS",0).edit().putBoolean("isFirstRun",false).apply();
-            startActivity(new Intent(getActivity(),DashboardActivity.class));
+            startActivity(new Intent(getActivity(),RegistrationActivity.class));
             getActivity().finish();
         });
         return view;

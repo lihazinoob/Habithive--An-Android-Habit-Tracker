@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("PREFS",MODE_PRIVATE);
             boolean isFirstRun = prefs.getBoolean("isFirstRun",true);
 
-            Intent intent = isFirstRun ? new Intent(SplashActivity.this, OnBoardingActivity.class):new Intent(SplashActivity.this,DashboardActivity.class);
+            Intent intent = isFirstRun ? new Intent(SplashActivity.this, OnBoardingActivity.class):new Intent(SplashActivity.this,RegistrationActivity.class);
             startActivity(intent);
             finish();
 
