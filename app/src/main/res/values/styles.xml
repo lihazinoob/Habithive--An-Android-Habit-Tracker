@@ -5,4 +5,8 @@
         <item name="android:textSize">14sp</item> <!-- Optional: Adjust size -->
         <item name="android:textColor">#FF0000</item> <!-- Optional: Keep red for error -->
     </style>
+    <style name="CircleShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- 50% makes it a perfect circle -->
+    </style>
 </resources>

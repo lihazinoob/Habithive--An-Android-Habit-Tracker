@@ -7,13 +7,64 @@
     tools:context=".activities.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profileImageGreetingView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user_tie_solid"
+        app:layout_constraintBottom_toBottomOf="@+id/GreetingsSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintStart_toEndOf="@+id/GreetingUserNameText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:shapeAppearanceOverlay="@style/CircleShape" />
+
     <TextView
+        android:id="@+id/GreetingUserNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:text="UserName"
+        android:textSize="18sp"
+        android:fontFamily="@font/roboto_mono_medium"
+        android:textColor="@color/primaryText"
+        app:layout_constraintBottom_toBottomOf="@+id/GreetingsText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/GreetingsText"
+        app:layout_constraintTop_toTopOf="@+id/GreetingsText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/GreetingsSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono_medium"
+        android:text="Let's Make Habits Together"
+        android:textSize="12sp"
+        android:textColor="@color/secondaryText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/GreetingsText"
+        app:layout_constraintVertical_bias="0.009" />
+
+    <TextView
+        android:id="@+id/GreetingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi,"
+        android:textSize="18sp"
+        android:fontFamily="@font/roboto_mono_medium"
+        android:textColor="@color/primaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,8 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.habithive.R;
+import com.example.habithive.activities.model.User;
+import com.example.habithive.activities.model.UserManagerSingleton;
+import com.google.android.material.imageview.ShapeableImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +21,8 @@ import com.example.habithive.R;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+    private ShapeableImageView profileImageView;
+    private TextView grettingUserNameText;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +68,27 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+
+//        Bind the UI components
+        profileImageView = view.findViewById(R.id.profileImageGreetingView);
+        grettingUserNameText = view.findViewById(R.id.GreetingUserNameText);
+
+//        /Load the User data of the header here
+
+        User currentUser = UserManagerSingleton.getInstance().getCurrentUser();
+        if(currentUser != null)
+        {
+            grettingUserNameText.setText(currentUser.getUsername());
+            String imageUrl = currentUser.getImageURL();
+            if(imageUrl != null && !imageUrl.isEmpty())
+            {
+                Glide.with(this).load(imageUrl).placeholder(R.drawable.user_tie_solid).error(R.drawable.user_tie_solid).into(profileImageView);
+
+            }
+        }
+
+
+        return view;
     }
 }
