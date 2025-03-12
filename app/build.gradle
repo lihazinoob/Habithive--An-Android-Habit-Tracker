@@ -48,6 +48,15 @@ dependencies {
     androidTestImplementation libs.test.core          // Core test utilities
     androidTestImplementation libs.espresso.intents   // Intent testing for redirect
 
+//    Room Database Dependency
+    def room_version = '2.6.1'
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // Optional: For testing Room (if you want to write unit tests later)
+    testImplementation "androidx.room:room-testing:$room_version"
+
+
 
 
 }
