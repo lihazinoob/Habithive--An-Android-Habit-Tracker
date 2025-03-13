@@ -25,7 +25,7 @@
         android:backgroundTintMode="add"
         android:fontFamily="@font/roboto_mono_bold"
         android:text="Login"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"

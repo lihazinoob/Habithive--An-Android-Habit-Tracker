@@ -64,7 +64,14 @@ public class DashboardActivity extends AppCompatActivity  {
             return false;
         });
         fabCreate.setOnClickListener(v -> {
-            Toast.makeText(this, "Create Habit clicked", Toast.LENGTH_SHORT).show();
+            HabitCreationBottomSheet bottomSheet = new HabitCreationBottomSheet();
+            bottomSheet.show(getSupportFragmentManager(),"habitcreating");
+        });
+        // Handle window insets
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragment_container), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
 
 
