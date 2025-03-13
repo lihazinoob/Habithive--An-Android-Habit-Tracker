@@ -248,6 +248,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     {
                         registrationLoader.setVisibility(View.GONE);
                         registerButton.setEnabled(true);
+                        Log.d("RoomDB",e.getMessage());
                         Toast.makeText(this, "Failed to insert data into Room DB: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     });
                 }

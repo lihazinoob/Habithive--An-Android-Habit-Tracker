@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background"
+    tools:context=".activities.CustomHabitCreationActivity">
+
+
+    <LinearLayout
+        android:id="@+id/formHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/run_custom_habit_card"
+        android:orientation="vertical"
+        android:paddingBottom="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/customHabitTitle">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/habitNameTextinputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Habit Name"
+            app:boxBackgroundColor="@color/background"
+            app:cursorColor="@color/black"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/habitNameTextInputEditText"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/goalLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:boxBackgroundColor="@color/background"
+            app:cursorColor="@color/black"
+            app:endIconMode="dropdown_menu"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/black"
+            android:hint="Goal (e.g. 30 min)">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/goalAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_mono_medium"
+                android:inputType="none"
+                android:padding="12dp"
+                android:dropDownHeight="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/frequencySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:padding="12dp"
+
+            android:layout_marginEnd="16dp"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/customHabitTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:text="Create Custom Habit"
+        android:textColor="@color/primaryText"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/saveCustomHabitButton"
+        android:layout_width="91dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="108dp"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:padding="12dp"
+        android:text="Save"
+
+
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formHolder"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
