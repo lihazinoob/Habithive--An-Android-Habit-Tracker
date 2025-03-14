@@ -39,86 +39,14 @@
 
 
 
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/EmailTextField"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="32dp"-->
-<!--        android:layout_marginEnd="32dp"-->
-<!--        android:hint="Email"-->
-<!--        app:cursorColor="@color/black"-->
-<!--        app:errorEnabled="true"-->
-<!--        app:hintTextColor="@color/black"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/UserNameTextField"-->
-<!--        app:layout_constraintVertical_bias="0.060000002">-->
-
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:id="@+id/EmailEditText"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/roboto_mono_medium"-->
-<!--            android:inputType="textEmailAddress" />-->
-
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/PasswordTextField"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="32dp"-->
-<!--        android:layout_marginEnd="32dp"-->
-<!--        android:hint="Password"-->
-<!--        app:cursorColor="@color/black"-->
-<!--        app:errorEnabled="true"-->
-<!--        app:hintTextColor="@color/black"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/EmailTextField"-->
-<!--        app:layout_constraintVertical_bias="0.060000002"-->
-<!--        app:passwordToggleEnabled="true">-->
-
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:id="@+id/PasswordEditText"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/roboto_mono_medium"-->
-<!--            android:inputType="textPassword" />-->
-
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/ConfirmTextField"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="32dp"-->
-<!--        android:layout_marginEnd="32dp"-->
-<!--        android:hint="Confirm Password"-->
-<!--        app:cursorColor="@color/black"-->
-<!--        app:errorEnabled="true"-->
-<!--        app:hintTextColor="@color/black"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/PasswordTextField"-->
-<!--        app:layout_constraintVertical_bias="0.053"-->
-<!--        app:passwordToggleEnabled="true">-->
 
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:id="@+id/ConfirmEditText"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/roboto_mono_medium"-->
-<!--            android:inputType="textPassword" />-->
 
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+
 
 
 <!--    <ImageView-->
@@ -213,7 +141,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:hint="User Name"
-        android:textColorHint="@color/primaryText"
+        android:textColorHint="@color/secondaryText"
         app:hintTextColor="@color/primaryText"
         app:cursorColor="@color/black"
         android:background="@color/background"
@@ -235,6 +163,97 @@
             android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/EmailTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Email"
+        android:textColorHint="@color/secondaryText"
+        app:hintTextColor="@color/primaryText"
+        app:cursorColor="@color/black"
+        android:background="@color/background"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/background"
+        app:boxStrokeColor="@color/black"
+        app:errorEnabled="true"
+        app:boxStrokeWidthFocused="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserNameTextField"
+        app:layout_constraintVertical_bias="0.0">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EmailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono_medium"
+            android:inputType="textEmailAddress"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PasswordTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Password"
+        android:textColorHint="@color/secondaryText"
+        app:hintTextColor="@color/primaryText"
+        app:cursorColor="@color/black"
+        android:background="@color/background"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/background"
+        app:boxStrokeColor="@color/black"
+        app:errorEnabled="true"
+        app:boxStrokeWidthFocused="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailTextField"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/secondaryText"
+        app:layout_constraintVertical_bias="0.0">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_mono_medium"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ConfirmTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Confirm Password"
+        android:textColorHint="@color/secondaryText"
+        app:hintTextColor="@color/primaryText"
+        app:cursorColor="@color/black"
+        android:background="@color/background"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/background"
+        app:boxStrokeColor="@color/black"
+        app:errorEnabled="true"
+        app:boxStrokeWidthFocused="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PasswordTextField"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/secondaryText"
+        app:layout_constraintVertical_bias="0.0">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ConfirmEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:fontFamily="@font/roboto_mono_medium"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
