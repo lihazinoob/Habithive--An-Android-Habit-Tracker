@@ -176,20 +176,9 @@
 
 
 
-<!--    </com.google.android.material.card.MaterialCardView>-->
 
-<!--    <ImageView-->
-<!--        android:id="@+id/AddImage"-->
-<!--        android:layout_width="33dp"-->
-<!--        android:layout_height="36dp"-->
 
-<!--        app:layout_constraintBottom_toTopOf="@+id/UserNameTextField"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.28"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/materialCardView"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/RegisterHeader"-->
-<!--        app:layout_constraintVertical_bias="0.421"-->
-<!--        app:srcCompat="@drawable/baseline_add_circle_outline_24" />-->
+
 
 
 
@@ -228,8 +217,19 @@
             android:clipToOutline="true"
             app:srcCompat="@drawable/circle_solid"
             />
-
     </com.google.android.material.card.MaterialCardView>
+    <ImageView
+        android:id="@+id/AddImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+        android:contentDescription="Image Add Icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toStartOf="@+id/materialCardView"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterHeader"
+        app:layout_constraintVertical_bias="0.402"
+        app:srcCompat="@drawable/baseline_add_circle_outline_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
