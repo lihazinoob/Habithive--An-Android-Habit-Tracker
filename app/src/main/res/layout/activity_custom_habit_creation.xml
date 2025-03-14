@@ -18,6 +18,7 @@
         android:background="@drawable/run_custom_habit_card"
         android:orientation="vertical"
         android:paddingBottom="32dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,8 +104,8 @@
         android:fontFamily="@font/roboto_mono_bold"
         android:padding="12dp"
         android:text="Save"
-
-
+        android:backgroundTint="@color/secondaryButton"
+        android:textColor="@color/primaryText"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
