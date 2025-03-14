@@ -47,7 +47,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private TextInputLayout confirmpasswordLayout;
     private ImageView addImage;
     private ImageView imagePlaceHolder;
-    private ImageView registerButton;
+    private Button registerButton;
     private ProgressBar registrationLoader;
     private TextView loginbutton;
     @Override

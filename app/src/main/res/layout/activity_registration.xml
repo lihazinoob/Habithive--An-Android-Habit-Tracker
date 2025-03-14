@@ -5,87 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
-
-
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        style="?android:attr/progressBarStyle"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="gone"-->
-<!--        android:indeterminate="true"-->
-<!--        android:indeterminateTint="@color/textColorPrimary"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.489"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.963" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/LoginMessage"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:fontFamily="@font/roboto_mono_medium"-->
-<!--        android:text="Already have an Account?"-->
-<!--        android:textColor="@color/textColorPrimary"-->
-<!--        android:textSize="12sp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/RegisterButton"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.421"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"-->
-<!--        app:layout_constraintVertical_bias="0.0" />-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--    <ImageView-->
-<!--        android:id="@+id/RegisterButton"-->
-<!--        android:layout_width="343dp"-->
-<!--        android:layout_height="76dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.609"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"-->
-<!--        app:layout_constraintVertical_bias="0.222"-->
-<!--        app:srcCompat="@drawable/e_mail" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/LoginButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:fontFamily="@font/roboto_mono_bold"-->
-<!--        android:text="LOG IN"-->
-<!--        android:textColor="@color/textColorPrimary"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/RegisterButton"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.073"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/LoginMessage"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"-->
-<!--        app:layout_constraintVertical_bias="0.0" />-->
-
-
-
-
-
-
-
-
-
-
-
     <TextView
         android:id="@+id/RegisterHeader"
         android:layout_width="wrap_content"
@@ -100,27 +19,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.057" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:clipChildren="true"
         app:cardBackgroundColor="#121212"
         app:cardCornerRadius="50dp"
         app:cardPreventCornerOverlap="false"
-        android:clipChildren="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegisterHeader"
-        app:layout_constraintVertical_bias="0.063">
+        app:layout_constraintVertical_bias="0.040000012">
+
         <ImageView
             android:id="@+id/ImagePlaceHolder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:clipToOutline="true"
-            app:srcCompat="@drawable/circle_solid"
-            />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/circle_solid" />
     </com.google.android.material.card.MaterialCardView>
     <ImageView
         android:id="@+id/AddImage"
@@ -160,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono_medium"
+            android:textColor="@color/primaryText"
             android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -186,6 +107,7 @@
         app:layout_constraintVertical_bias="0.0">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EmailEditText"
+            android:textColor="@color/primaryText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono_medium"
@@ -217,6 +139,7 @@
         app:layout_constraintVertical_bias="0.0">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/PasswordEditText"
+            android:textColor="@color/primaryText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono_medium"
@@ -247,14 +170,68 @@
         app:passwordToggleTint="@color/secondaryText"
         app:layout_constraintVertical_bias="0.0">
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/primaryText"
             android:id="@+id/ConfirmEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:fontFamily="@font/roboto_mono_medium"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-
+    <TextView
+        android:id="@+id/LoginMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an Account?"
+        android:fontFamily="@font/roboto_mono_medium"
+        android:textColor="@color/secondaryText"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"
+        app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/LoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOG IN"
+        android:textSize="12sp"
+        android:textColor="@color/primaryText"
+        android:fontFamily="@font/roboto_mono_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.791"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"
+        app:layout_constraintVertical_bias="0.0" />
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:text="SIGN UP"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:textSize="14sp"
+        android:backgroundTint="@color/primaryButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginMessage"
+        app:layout_constraintVertical_bias="0.06999999" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/success"
+        android:indeterminateBehavior="repeat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
