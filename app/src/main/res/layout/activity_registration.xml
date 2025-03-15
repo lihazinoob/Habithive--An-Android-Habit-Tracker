@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
+
     <TextView
         android:id="@+id/RegisterHeader"
         android:layout_width="wrap_content"
@@ -15,10 +16,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.104" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -177,49 +177,55 @@
             android:inputType="textPassword"
             android:fontFamily="@font/roboto_mono_medium"/>
     </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/LoginMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an Account?"
         android:fontFamily="@font/roboto_mono_medium"
+        android:text="Already have an Account?"
         android:textColor="@color/secondaryText"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.085" />
+
     <TextView
         android:id="@+id/LoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOG IN"
-        android:textSize="12sp"
-        android:textColor="@color/primaryText"
         android:fontFamily="@font/roboto_mono_bold"
+        android:text="LOG IN"
+        android:textColor="@color/primaryText"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.791"
+        app:layout_constraintHorizontal_bias="0.783"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ConfirmTextField"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.082" />
+
     <Button
         android:id="@+id/RegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:text="SIGN UP"
-        android:fontFamily="@font/roboto_mono_bold"
-        android:textSize="14sp"
         android:backgroundTint="@color/primaryButton"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:text="SIGN UP"
+        android:textColor="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LoginMessage"
-        app:layout_constraintVertical_bias="0.06999999" />
+        app:layout_constraintVertical_bias="0.152" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

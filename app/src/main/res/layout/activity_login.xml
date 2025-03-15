@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -16,23 +17,25 @@
         app:layout_constraintVertical_bias="0.561"
         app:srcCompat="@drawable/logohabithivelogin" />
 
-    <com.google.android.material.button.MaterialButton
+
+
+    <Button
+
         android:id="@+id/Login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:backgroundTint="#F6A6A6A6"
-        android:backgroundTintMode="add"
-        android:fontFamily="@font/roboto_mono_bold"
-        android:text="Login"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:text="Log in"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:textSize="14sp"
+        android:backgroundTint="@color/primaryButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PasswordLoginTextField"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <Button
         android:id="@+id/registerButtonLinkefromLogin"
@@ -47,7 +50,6 @@
         android:background="@drawable/custom_button"
         android:textColor="@color/black"
         android:textSize="16sp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -62,7 +64,7 @@
         android:fontFamily="@font/roboto_mono_medium"
         android:text="Not Registered?"
         android:textColor="#141212"
-        android:textSize="18sp"
+        android:textSize="14sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,12 +81,15 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:hint="Email"
-        app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/black"
+        android:textColorHint="@color/secondaryText"
+        app:hintTextColor="@color/primaryText"
         app:cursorColor="@color/black"
+        android:background="@color/background"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/background"
+        app:boxStrokeColor="@color/black"
         app:errorEnabled="true"
-        app:hintTextColor="@color/black"
+        app:boxStrokeWidthFocused="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -111,21 +116,27 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:hint="Password"
-        app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/black"
+        android:textColorHint="@color/secondaryText"
+        app:hintTextColor="@color/primaryText"
         app:cursorColor="@color/black"
+        android:background="@color/background"
+        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/background"
+        app:boxStrokeColor="@color/black"
         app:errorEnabled="true"
-        app:hintTextColor="@color/black"
+        app:boxStrokeWidthFocused="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/EmailLoginTextField"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/secondaryText"
         app:layout_constraintVertical_bias="0.25">
 
         <com.google.android.material.textfield.TextInputEditText
            android:id="@+id/PasswordLoginEditText"
             android:layout_width="match_parent"
+            android:inputType="textPassword"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_mono_medium" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout passwordLayout;
     private TextInputEditText emailEditText;
     private TextInputEditText passwordEditText;
-    private MaterialButton loginButton;
+    private Button loginButton;
     private Button registerButton;
     private FirebaseAuth auth;
     @Override
