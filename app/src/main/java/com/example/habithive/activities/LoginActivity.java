@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.habithive.R;
 import com.example.habithive.activities.database.AppDatabase;
 import com.example.habithive.activities.model.User;
+import com.example.habithive.activities.model.UserManagerSingleton;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -107,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                                         new Thread(() ->
                                         {
                                             appDatabase.userDao().insert(user);
+                                            UserManagerSingleton.getInstance().setCurrentUser(user);
                                             runOnUiThread(() -> {
                                                 Toast.makeText(this, "Logged in as " + userName, Toast.LENGTH_SHORT).show();
                                                 progressBar.setVisibility(View.GONE);

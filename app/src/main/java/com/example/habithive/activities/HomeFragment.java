@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.habithive.R;
+import com.example.habithive.activities.database.AppDatabase;
 import com.example.habithive.activities.model.User;
 import com.example.habithive.activities.model.UserManagerSingleton;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 public class HomeFragment extends Fragment {
     private ShapeableImageView profileImageView;
     private TextView grettingUserNameText;
+    private AppDatabase appDatabase;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +65,7 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        appDatabase = AppDatabase.getInstance(requireContext());
     }
 
     @Override
@@ -77,18 +81,48 @@ public class HomeFragment extends Fragment {
 //        /Load the User data of the header here
 
         User currentUser = UserManagerSingleton.getInstance().getCurrentUser();
-        if(currentUser != null)
+
+        if(currentUser == null && FirebaseAuth.getInstance().getCurrentUser() != null)
         {
-            grettingUserNameText.setText(currentUser.getUsername());
-            String imageUrl = currentUser.getImageURL();
-            if(imageUrl != null && !imageUrl.isEmpty())
+//            Fetch from Room database if Singleton is null but user is authenticated
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            new Thread(()->
             {
-                Glide.with(this).load(imageUrl).placeholder(R.drawable.user_tie_solid).error(R.drawable.user_tie_solid).into(profileImageView);
-
-            }
+               User userFromRoomDb = appDatabase.userDao().getUserById(userId);
+               if(userFromRoomDb != null)
+               {
+                   UserManagerSingleton.getInstance().setCurrentUser(userFromRoomDb);
+                   updateUI(userFromRoomDb);
+               }
+            }).start();
         }
-
-
+        else if(currentUser != null)
+        {
+            updateUI(currentUser);
+        }
+//        if(currentUser != null)
+//        {
+//            grettingUserNameText.setText(currentUser.getUsername());
+//            String imageUrl = currentUser.getImageURL();
+//            if(imageUrl != null && !imageUrl.isEmpty())
+//            {
+//                Glide.with(this).load(imageUrl).placeholder(R.drawable.user_tie_solid).error(R.drawable.user_tie_solid).into(profileImageView);
+//
+//            }
+//        }
         return view;
+    }
+    private void updateUI(User user)
+    {
+        requireActivity().runOnUiThread(() -> {
+            grettingUserNameText.setText(user.getUsername());
+            String imageUrl = user.getImageURL(); // Fixed method name to match User class
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Glide.with(this).load(imageUrl)
+                        .placeholder(R.drawable.user_tie_solid)
+                        .error(R.drawable.user_tie_solid)
+                        .into(profileImageView);
+            }
+        });
     }
 }

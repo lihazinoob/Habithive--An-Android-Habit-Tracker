@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.habithive.R;
 import com.example.habithive.activities.database.AppDatabase;
 import com.example.habithive.activities.model.User;
+import com.example.habithive.activities.model.UserManagerSingleton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -75,6 +76,7 @@ public class SplashActivity extends AppCompatActivity {
                 if(user != null)
                 {
                     // User exists in Room, proceed to Dashboard
+                    UserManagerSingleton.getInstance().setCurrentUser(user);
                     startDashboardActivity(user.getUsername());
                 }
                 else {
@@ -85,6 +87,7 @@ public class SplashActivity extends AppCompatActivity {
                                 {
                                     User newUser = new User(userId,documentSnapshot.getString("username"),auth.getCurrentUser().getEmail(),documentSnapshot.getString("imageUrl"));
                                     appDatabase.userDao().insert(newUser);
+                                    UserManagerSingleton.getInstance().setCurrentUser(newUser);
                                     startDashboardActivity(newUser.getUsername());
                                 }
                                 else {
