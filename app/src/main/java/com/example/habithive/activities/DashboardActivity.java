@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.habithive.R;
+import com.example.habithive.activities.model.UserManagerSingleton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -55,10 +56,7 @@ public class DashboardActivity extends AppCompatActivity  {
                 loadFragment(new ProgressFrament());
                 return true;
             } else if (id == R.id.nav_logout) {
-                auth.signOut();
-                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
+                logoutUser();
                 return true;
             }
             return false;
@@ -81,6 +79,19 @@ public class DashboardActivity extends AppCompatActivity  {
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
+    }
+
+    private void logoutUser()
+    {
+        auth.signOut();
+//        Clear UserManagerSingleton
+        UserManagerSingleton.getInstance().clearCurrentUser();
+        // Show logout confirmation
+        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+        // Navigate to LoginActivity
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 
 
