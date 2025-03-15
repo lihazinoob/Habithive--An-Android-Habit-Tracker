@@ -1,5 +1,6 @@
 package com.example.habithive.activities.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -12,5 +13,5 @@ public interface HabitDao {
     @Insert
     void insert(Habit habit);
     @Query("SELECT * FROM habits WHERE userId = :userID")
-    List<Habit> getHabitsByUserId(String userID);
+    LiveData<List<Habit>> getHabitsByUserId(String userID);
 }
