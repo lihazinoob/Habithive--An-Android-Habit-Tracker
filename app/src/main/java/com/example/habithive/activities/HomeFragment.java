@@ -100,16 +100,6 @@ public class HomeFragment extends Fragment {
         {
             updateUI(currentUser);
         }
-//        if(currentUser != null)
-//        {
-//            grettingUserNameText.setText(currentUser.getUsername());
-//            String imageUrl = currentUser.getImageURL();
-//            if(imageUrl != null && !imageUrl.isEmpty())
-//            {
-//                Glide.with(this).load(imageUrl).placeholder(R.drawable.user_tie_solid).error(R.drawable.user_tie_solid).into(profileImageView);
-//
-//            }
-//        }
         return view;
     }
     private void updateUI(User user)
