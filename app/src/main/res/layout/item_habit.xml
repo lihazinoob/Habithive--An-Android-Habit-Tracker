@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/secondaryBackground"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        >
+<!--        Icon will be here-->
+        <ImageView
+            android:id="@+id/habitIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/list_check_solid"
+            />
+
+<!--        habit Name and Goal-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            >
+        <TextView
+            android:id="@+id/habitName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Habit Name"
+            android:textColor="@color/primaryText"
+            android:fontFamily="@font/roboto_mono_medium"
+            android:textSize="16sp"
+            />
+            <TextView
+                android:id="@+id/habitGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0/0 UNIT"
+                android:textSize="14sp"
+                android:textColor="@color/secondaryText" />
+        </LinearLayout>
+
+<!--        Action Button-->
+
+        <ImageButton
+            android:id="@+id/actionButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_add_circle_outline_24"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
