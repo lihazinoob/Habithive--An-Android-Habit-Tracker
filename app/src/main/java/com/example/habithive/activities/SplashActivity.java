@@ -21,9 +21,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.habithive.R;
+import com.example.habithive.activities.database.AppDatabase;
+import com.example.habithive.activities.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_DELAY = 2000;
+    private FirebaseAuth auth;
+    private FirebaseFirestore firestore;
+    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,25 +45,77 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Initialize Firebase and Room
+        auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        appDatabase = AppDatabase.getInstance(this);
+        new Handler(Looper.getMainLooper()).postDelayed(this::checkAuthAndNavigate,SPLASH_DELAY);
 
+    }
+    private void checkAuthAndNavigate()
+    {
+        SharedPreferences prefs = getSharedPreferences("PREFS",MODE_PRIVATE);
+        boolean isFirstRun = prefs.getBoolean("isFirstRun",true);
 
-        new Handler(Looper.getMainLooper()).postDelayed(()->
+        if(isFirstRun)
         {
-            SharedPreferences prefs = getSharedPreferences("PREFS",MODE_PRIVATE);
-            boolean isFirstRun = prefs.getBoolean("isFirstRun",true);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isFirstRun", false);
+            editor.apply();
+            startActivity(new Intent(SplashActivity.this, OnBoardingActivity.class));
+            finish();
+        }
+        else if(auth.getCurrentUser() != null)
+        {
+//            User is logged in. So sync room database and go to Dashboard
+            String userId = auth.getCurrentUser().getUid();
+            new Thread(()->
+            {
+                User user = appDatabase.userDao().getUserById(userId);
+                if(user != null)
+                {
+                    // User exists in Room, proceed to Dashboard
+                    startDashboardActivity(user.getUsername());
+                }
+                else {
+                    firestore.collection("users").document(userId)
+                            .get().addOnSuccessListener(documentSnapshot ->
+                            {
+                                if(documentSnapshot.exists())
+                                {
+                                    User newUser = new User(userId,documentSnapshot.getString("username"),auth.getCurrentUser().getEmail(),documentSnapshot.getString("imageUrl"));
+                                    appDatabase.userDao().insert(newUser);
+                                    startDashboardActivity(newUser.getUsername());
+                                }
+                                else {
+                                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                                    finish();
+                                }
+                            })
+                            .addOnFailureListener(e->
+                            {
+                                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                                finish();
+                            });
+                }
+            }).start();
+        }
+        else
+        {
+            // User is not logged in: Go to Login
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            finish();
+        }
+    }
 
-            Intent intent = isFirstRun ? new Intent(SplashActivity.this, OnBoardingActivity.class):new Intent(SplashActivity.this,RegistrationActivity.class);
+    private void startDashboardActivity(String username)
+    {
+        runOnUiThread(()->
+        {
+            Intent intent = new Intent(SplashActivity.this, DashboardActivity.class);
+            intent.putExtra("username", username); // Optional: pass username
             startActivity(intent);
             finish();
-
-        },SPLASH_DELAY);
-
-
-
-
-
-
-
-
+        });
     }
 }
