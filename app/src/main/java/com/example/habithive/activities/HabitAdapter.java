@@ -1,5 +1,6 @@
 package com.example.habithive.activities;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,13 +34,13 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
     public void onBindViewHolder(@NonNull HabitViewHolder holder, int position) {
         Habit habit = habits.get(position);
         holder.habitName.setText(habit.getName());
-
+        String type = habit.getType() != null ? habit.getType() : "null";
 //        Determine unit based on type
         String unit = habit.getType().equals("Time") ? "MIN" :
                 habit.getType().equals("Steps") ? "STEPS" :
                         habit.getType().equals("Volume") ? "ML" :
                                 habit.getType().equals("Times") ? "TIMES" : "UNIT";
-
+        Log.d("HabitAdapter", "Habit: " + habit.getName() + ", Type: " + type + ", Progress: " + habit.getProgress() + ", Goal: " + habit.getGoal() + ", Unit: " + unit);
         holder.habitGoal.setText(String.format("%d/%s %s", habit.getProgress(), habit.getGoal(), unit));
 
         holder.progressIndicator.setProgress(habit.getProgress() >= Integer.parseInt(habit.getGoal()) ? 100 :
@@ -48,8 +49,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
 
 
 
-        holder.habitGoal.setText(String.format("0/%s", habit.getGoal())); // Placeholder: Update later
-        // TODO: Set icon based on habit name (e.g., "Walk" → walking icon)
+
         holder.actionButton.setOnClickListener(v -> {
             // TODO: Handle action (e.g., increment progress)
         });
