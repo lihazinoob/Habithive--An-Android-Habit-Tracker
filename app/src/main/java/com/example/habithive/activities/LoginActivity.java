@@ -91,8 +91,6 @@ public class LoginActivity extends AppCompatActivity {
 
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
-
-
                     if (task.isSuccessful()) {
                         //After Successful Login fetch the user data from FireStore
                         String userId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
@@ -107,7 +105,22 @@ public class LoginActivity extends AppCompatActivity {
                                         User user = new User(userId, userName, email, imageUrl);
                                         new Thread(() ->
                                         {
-                                            appDatabase.userDao().insert(user);
+
+//                                            Check if the user exists in the database already
+                                            User existingUser = appDatabase.userDao().getUserById(userId);
+                                            if(existingUser != null)
+                                            {
+//                                                Update the existing user
+                                                existingUser.setUsername(userName);
+                                                existingUser.setEmail(email);
+                                                existingUser.setImageURL(imageUrl);
+                                                appDatabase.userDao().update(existingUser);
+
+                                            }
+                                            else
+                                            {
+                                                appDatabase.userDao().insert(user);
+                                            }
                                             UserManagerSingleton.getInstance().setCurrentUser(user);
                                             runOnUiThread(() -> {
                                                 Toast.makeText(this, "Logged in as " + userName, Toast.LENGTH_SHORT).show();
@@ -138,8 +151,11 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             Toast.makeText(this, "Login failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
+                        progressBar.setVisibility(View.GONE);
+                        loginButton.setEnabled(true);
 
                     }
+
                 });
     }
 }

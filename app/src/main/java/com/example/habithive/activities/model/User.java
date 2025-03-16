@@ -38,6 +38,15 @@ public class User {
     }
 
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }
