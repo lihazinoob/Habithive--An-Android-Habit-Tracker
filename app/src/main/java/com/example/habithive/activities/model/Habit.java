@@ -15,14 +15,18 @@ public class Habit {
     public int habitId;
     public String userId;
     public String name;
+    public String type;
     public String goal;
     public String frequency;
+    public int progress;
 
-    public Habit(String userId, String name, String goal, String frequency) {
+    public Habit(String userId, String name,String type, String goal, String frequency) {
         this.userId = userId;
         this.name = name;
+        this.type = type;
         this.goal = goal;
         this.frequency = frequency;
+        this.progress = 0;
     }
 
     public int getHabitId() {
@@ -43,5 +47,17 @@ public class Habit {
 
     public String getFrequency() {
         return frequency;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }

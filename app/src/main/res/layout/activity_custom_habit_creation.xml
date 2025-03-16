@@ -35,6 +35,7 @@
             app:boxBackgroundColor="@color/background"
             app:cursorColor="@color/black"
             app:errorEnabled="true"
+            android:textColorHint="@color/primaryText"
             app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -43,6 +44,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--        Goal Type Spinner-->
+        <Spinner
+            android:id="@+id/habitTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:padding="12dp"
+            android:entries="@array/habit_types"
+            android:prompt="Select Goal Type"
+
+            />
+
+<!--        Goal Value Input-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/goalLayout"
@@ -53,21 +71,19 @@
             android:layout_marginEnd="16dp"
             app:boxBackgroundColor="@color/background"
             app:cursorColor="@color/black"
-            app:endIconMode="dropdown_menu"
             app:errorEnabled="true"
             app:hintTextColor="@color/black"
-            android:hint="Goal (e.g. 30 min)">
-
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/goalAutoCompleteTextView"
+            android:textColorHint="@color/primaryText"
+            android:hint="Goal (30 min or 10000 steps)"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/goalEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_mono_medium"
-                android:inputType="none"
-                android:padding="12dp"
-                android:dropDownHeight="wrap_content"/>
+                android:inputType="number"
+                />
         </com.google.android.material.textfield.TextInputLayout>
-
         <Spinner
             android:id="@+id/frequencySpinner"
             android:layout_width="match_parent"
@@ -75,12 +91,10 @@
             android:layout_marginTop="32dp"
             android:layout_marginStart="16dp"
             android:padding="12dp"
-
+            android:entries="@array/frequency_options"
+            android:prompt="Select Frequency"
             android:layout_marginEnd="16dp"/>
-
-
     </LinearLayout>
-
     <TextView
         android:id="@+id/customHabitTitle"
         android:layout_width="wrap_content"
