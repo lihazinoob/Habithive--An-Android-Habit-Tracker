@@ -27,6 +27,8 @@ import com.example.habithive.activities.model.UserManagerSingleton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.concurrent.Executors;
+
 public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_DELAY = 2000;
     private FirebaseAuth auth;
@@ -86,19 +88,25 @@ public class SplashActivity extends AppCompatActivity {
                                 if(documentSnapshot.exists())
                                 {
                                     User newUser = new User(userId,documentSnapshot.getString("username"),auth.getCurrentUser().getEmail(),documentSnapshot.getString("imageUrl"));
-                                    appDatabase.userDao().insert(newUser);
-                                    UserManagerSingleton.getInstance().setCurrentUser(newUser);
-                                    startDashboardActivity(newUser.getUsername());
+                                    Executors.newSingleThreadExecutor().execute(() -> {
+                                        appDatabase.userDao().insert(newUser);
+                                        UserManagerSingleton.getInstance().setCurrentUser(newUser);
+                                        startDashboardActivity(newUser.getUsername());
+                                    });
                                 }
                                 else {
-                                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                                    finish();
+                                    runOnUiThread(() -> {
+                                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                                        finish();
+                                    });
                                 }
                             })
                             .addOnFailureListener(e->
                             {
-                                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                                finish();
+                                runOnUiThread(() -> {
+                                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                                    finish();
+                                });
                             });
                 }
             }).start();

@@ -22,11 +22,15 @@ import com.example.habithive.activities.model.Habit;
 import com.example.habithive.activities.model.UserManagerSingleton;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class CustomHabitCreationActivity extends AppCompatActivity {
 
-    private TextInputEditText habitNameEditText;
-    private MaterialAutoCompleteTextView goalAutoCompleteTextView;
+    private TextInputLayout habitNameTextinputLayout;
+    private TextInputEditText habitNameTextInputEditText;
+    private Spinner habitTypeSpinner;
+    private TextInputLayout goalLayout;
+    private TextInputEditText goalEditText;
     private Spinner frequencySpinner;
     private Button saveButton;
     private AppDatabase appDatabase;
@@ -48,25 +52,24 @@ public class CustomHabitCreationActivity extends AppCompatActivity {
         appDatabase = AppDatabase.getInstance(this);
 
 //        Binding the UI element
-        habitNameEditText = findViewById(R.id.habitNameTextInputEditText);
-        goalAutoCompleteTextView = findViewById(R.id.goalAutoCompleteTextView);
+        habitNameTextinputLayout = findViewById(R.id.habitNameTextinputLayout);
+        habitNameTextInputEditText = findViewById(R.id.habitNameTextInputEditText);
+        habitTypeSpinner = findViewById(R.id.habitTypeSpinner);
+        goalLayout = findViewById(R.id.goalLayout);
+        goalEditText = findViewById(R.id.goalEditText);
         frequencySpinner = findViewById(R.id.frequencySpinner);
         saveButton = findViewById(R.id.saveCustomHabitButton);
 
+//        Setup Habit Type Spinner
+        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this,R.array.habit_types,android.R.layout.simple_spinner_item);
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        habitTypeSpinner.setAdapter(typeAdapter);
 
-//        Define the time options
-
-        String[] timeOptions = new String[]{"15 min", "30 min", "45 min", "1 hr", "1.5 hr", "2 hr"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,timeOptions);
-        goalAutoCompleteTextView.setAdapter(adapter);
-
-//        Define the elements for spinners and setting the font family of the text programmatically
-        String[] frequencyOptions = new String[]{"Daily","Weekly","Monthly"};
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,frequencyOptions);
-
-
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        frequencySpinner.setAdapter(adapter1);
+//        Setup frequency spinner
+        ArrayAdapter<CharSequence> frequencyAdapter = ArrayAdapter.createFromResource(this,
+                R.array.frequency_options, android.R.layout.simple_spinner_item);
+        frequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        frequencySpinner.setAdapter(frequencyAdapter);
 
 //        Clicking the save button
         saveButton.setOnClickListener(i->{
@@ -76,17 +79,28 @@ public class CustomHabitCreationActivity extends AppCompatActivity {
     }
     private void saveHabit()
     {
-        String habitName = habitNameEditText.getText().toString().trim();
-        String goal = goalAutoCompleteTextView.getText().toString().trim();
+        String habitName = habitNameTextInputEditText.getText().toString().trim();
+        String goalValue = goalEditText.getText().toString().trim();
         String frequency = frequencySpinner.getSelectedItem().toString();
+        String type = habitTypeSpinner.getSelectedItem().toString().split(" ")[0]; // Extract "Time", "Steps", etc.
 //        Some form of validation, will be more concise later
-        if (habitName.isEmpty() || goal.isEmpty()) {
-            Toast.makeText(this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+        if (habitName.isEmpty() || goalValue.isEmpty()) {
+            if (habitName.isEmpty()) habitNameTextinputLayout.setError("Habit name is required");
+            if (goalValue.isEmpty()) goalLayout.setError("Goal value is required");
+            return;
+        }
+
+
+        // Validate goal value is numeric
+        try {
+            Integer.parseInt(goalValue);
+        } catch (NumberFormatException e) {
+            goalLayout.setError("Goal must be a number");
             return;
         }
 
         String userId = UserManagerSingleton.getInstance().getCurrentUser().getUserID();
-        Habit habit = new Habit(userId,habitName,goal,frequency);
+        Habit habit = new Habit(userId, habitName, type, goalValue, frequency);
 
 //        Save to Room Database
         new Thread(()->
@@ -95,6 +109,7 @@ public class CustomHabitCreationActivity extends AppCompatActivity {
             runOnUiThread(()->
             {
                 Toast.makeText(this, "Habit saved: " + habitName, Toast.LENGTH_SHORT).show();
+                setResult(RESULT_OK);
                 finish(); // Close the activity
             });
 

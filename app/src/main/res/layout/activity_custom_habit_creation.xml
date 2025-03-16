@@ -56,7 +56,7 @@
             android:layout_marginEnd="16dp"
             android:padding="12dp"
             android:entries="@array/habit_types"
-            android:prompt="Select Goal Type"
+            android:prompt="@string/select_goal_type"
 
             />
 
@@ -92,7 +92,7 @@
             android:layout_marginStart="16dp"
             android:padding="12dp"
             android:entries="@array/frequency_options"
-            android:prompt="Select Frequency"
+            android:prompt="@string/select_frequency"
             android:layout_marginEnd="16dp"/>
     </LinearLayout>
     <TextView

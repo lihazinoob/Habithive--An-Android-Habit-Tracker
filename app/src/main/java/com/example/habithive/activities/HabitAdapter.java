@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,21 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
     public void onBindViewHolder(@NonNull HabitViewHolder holder, int position) {
         Habit habit = habits.get(position);
         holder.habitName.setText(habit.getName());
+
+//        Determine unit based on type
+        String unit = habit.getType().equals("Time") ? "MIN" :
+                habit.getType().equals("Steps") ? "STEPS" :
+                        habit.getType().equals("Volume") ? "ML" :
+                                habit.getType().equals("Times") ? "TIMES" : "UNIT";
+
+        holder.habitGoal.setText(String.format("%d/%s %s", habit.getProgress(), habit.getGoal(), unit));
+
+        holder.progressIndicator.setProgress(habit.getProgress() >= Integer.parseInt(habit.getGoal()) ? 100 :
+                (int) ((float) habit.getProgress() / Integer.parseInt(habit.getGoal()) * 100));
+
+
+
+
         holder.habitGoal.setText(String.format("0/%s", habit.getGoal())); // Placeholder: Update later
         // TODO: Set icon based on habit name (e.g., "Walk" → walking icon)
         holder.actionButton.setOnClickListener(v -> {
@@ -52,6 +68,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
         ImageView habitIcon;
         TextView habitName;
         TextView habitGoal;
+        ProgressBar progressIndicator;
         ImageButton actionButton;
 
         public HabitViewHolder(@NonNull View itemView) {
@@ -59,6 +76,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
             habitIcon = itemView.findViewById(R.id.habitIcon);
             habitName = itemView.findViewById(R.id.habitName);
             habitGoal = itemView.findViewById(R.id.habitGoal);
+            progressIndicator = itemView.findViewById(R.id.progressIndicator);
             actionButton = itemView.findViewById(R.id.actionButton);
         }
     }

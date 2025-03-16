@@ -14,4 +14,7 @@ public interface HabitDao {
     void insert(Habit habit);
     @Query("SELECT * FROM habits WHERE userId = :userID")
     LiveData<List<Habit>> getHabitsByUserId(String userID);
+
+    @Query("UPDATE habits SET progress = :progress WHERE habitId = :habitId")
+    void updateProgress(int habitId, int progress);
 }

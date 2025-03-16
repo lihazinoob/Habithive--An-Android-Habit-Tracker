@@ -47,6 +47,20 @@
                 android:text="0/0 UNIT"
                 android:textSize="14sp"
                 android:textColor="@color/secondaryText" />
+
+            <ProgressBar
+                android:id="@+id/progressIndicator"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:progress="0"
+                android:max="100"
+                android:progressTint="@color/progressFill"
+                android:backgroundTint="@color/progressBackground"
+
+
+                />
         </LinearLayout>
 
 <!--        Action Button-->

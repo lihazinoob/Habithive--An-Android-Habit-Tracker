@@ -5,4 +5,7 @@
 
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
+
+    <string name="select_goal_type">Select Goal Type</string>
+    <string name="select_frequency">Select Frequency</string>
 </resources>
