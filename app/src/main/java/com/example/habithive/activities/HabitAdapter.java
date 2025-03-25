@@ -43,8 +43,28 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHol
         Log.d("HabitAdapter", "Habit: " + habit.getName() + ", Type: " + type + ", Progress: " + habit.getProgress() + ", Goal: " + habit.getGoal() + ", Unit: " + unit);
         holder.habitGoal.setText(String.format("%d/%s %s", habit.getProgress(), habit.getGoal(), unit));
 
-        holder.progressIndicator.setProgress(habit.getProgress() >= Integer.parseInt(habit.getGoal()) ? 100 :
-                (int) ((float) habit.getProgress() / Integer.parseInt(habit.getGoal()) * 100));
+
+//        Progress Bar
+        try{
+            int goal = Integer.parseInt(habit.getGoal());
+            if(goal <= 0)
+            {
+                Log.e("HabitAdapter", "Invalid goal for habit " + habit.getName() + ": " + goal);
+                holder.progressIndicator.setProgress(0);
+            }
+            else
+            {
+                int progressPercentage = habit.getProgress() >= goal ? 100 :
+                (int) ((float) habit.getProgress() / Integer.parseInt(habit.getGoal()) * 100);
+                holder.progressIndicator.setProgress(progressPercentage);
+                Log.d("HabitAdapter", "Progress for " + habit.getName() + ": " + progressPercentage + "%");
+            }
+        }
+        catch (NumberFormatException e) {
+            Log.e("HabitAdapter", "Invalid goal format for habit " + habit.getName() + ": " + habit.getGoal(), e);
+            holder.progressIndicator.setProgress(0);
+        }
+
 
 
 

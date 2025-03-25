@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -27,11 +28,15 @@ import java.util.List;
 public class StepTrackingService extends Service implements SensorEventListener {
     private static final String CHANNEL_ID = "StepTrackingChannel";
     private static final int NOTIFICATION = 1;
+    private static final String PREFS_NAME = "StepTrackingPrefs";
+    private static final String KEY_INITIAL_STEP_COUNT = "initialStepCount";
+    private static final String KEY_CURRENT_STEPS = "currentSteps";
     private SensorManager sensorManager;
     private Sensor stepCounterSensor;
     private AppDatabase appDatabase;
     private int initialStepCount = -1;
     private int currentSteps = 0;
+    private SharedPreferences prefs;
 
     @Override
     public void onCreate()
@@ -72,9 +77,15 @@ public class StepTrackingService extends Service implements SensorEventListener 
             if(initialStepCount == -1)
             {
                 initialStepCount = totalSteps;
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt(KEY_INITIAL_STEP_COUNT,initialStepCount);
+                editor.apply();
                 Log.d("StepTrackingService", "Initial step count set: " + initialStepCount);
             }
             currentSteps = totalSteps - initialStepCount;
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt(KEY_CURRENT_STEPS, currentSteps);
+            editor.apply();
             Log.d("StepTrackingService", "Current steps: " + currentSteps);
             updateStepHabits(currentSteps);
 
