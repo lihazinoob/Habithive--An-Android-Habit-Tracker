@@ -15,6 +15,9 @@ public interface HabitDao {
     @Query("SELECT * FROM habits WHERE userId = :userID")
     LiveData<List<Habit>> getHabitsByUserId(String userID);
 
+    @Query("SELECT * FROM habits WHERE userId = :userID")
+    List<Habit> getHabitsByUserIdSync(String userID);
+
     @Query("UPDATE habits SET progress = :progress WHERE habitId = :habitId")
     void updateProgress(int habitId, int progress);
 }
